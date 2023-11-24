@@ -2,6 +2,7 @@
 
 build/
 dist/
+app.spec
 
 __pycache__/
 *.py[cod]
