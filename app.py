@@ -136,9 +136,9 @@ def press_key(key='ctrlleft'):
     pyautogui.press(key)
 
 if __name__ == "__main__":
-    # from tendo import singleton
-    # try:
-    #     me = singleton.SingleInstance()
-    # except:
-    #     exit(-1)
+    from tendo import singleton
+    try:
+        me = singleton.SingleInstance()
+    except:
+        exit()
     StayAwakeApp(press_key).run()
