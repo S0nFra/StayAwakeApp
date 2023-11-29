@@ -16,14 +16,11 @@ except Exception as exp:
 WAIT_TIME = 60 # s
 
 def resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
-    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-    return os.path.join(base_path, relative_path)
+    return os.path.join(os.getcwd(), relative_path)
 
 class StayAwakeApp():
     
     def __init__(self, action_to_wake=None) -> None:
-        self._WS = os.getcwd()
         try:
             self._sleep_img = Image.open(resource_path("icon\\zzz-sleep-symbol.png"))
             self._allarm_img = Image.open(resource_path("icon\\alarm-clock.png"))
