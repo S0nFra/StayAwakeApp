@@ -8,22 +8,28 @@ try:
     import time
     from datetime import datetime
     from random import randint
+    import sys
 except Exception as exp:
     print (f'Error: {exp}')
     exit()
     
 WAIT_TIME = 60 # s
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
 class StayAwakeApp():
     
     def __init__(self, action_to_wake=None) -> None:
         self._WS = os.getcwd()
         try:
-            self._sleep_img = Image.open(os.path.join(self._WS, "icon\\zzz-sleep-symbol.png"))
-            self._allarm_img = Image.open(os.path.join(self._WS, "icon\\alarm-clock.png"))
-            self._on_action_img = Image.open(os.path.join(self._WS, "icon\\alarm-clock-on-action.png"))
-        except FileNotFoundError:
-            print("Files not found in", os.path.join(self._WS, "icon"))
+            self._sleep_img = Image.open(resource_path("icon\\zzz-sleep-symbol.png"))
+            self._allarm_img = Image.open(resource_path("icon\\alarm-clock.png"))
+            self._on_action_img = Image.open(resource_path("icon\\alarm-clock-on-action.png"))
+        except FileNotFoundError as e:
+            print("Files not found in", e.filename)
             # npa.notify("Error",
             #     message=f"Files not found in {os.path.join(self._WS, 'icon')}",
             #     timeout = 5)
