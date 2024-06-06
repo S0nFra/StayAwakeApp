@@ -2,7 +2,7 @@
 
 build/
 dist/
-app.spec
+*.spec
 
 __pycache__/
 *.py[cod]
